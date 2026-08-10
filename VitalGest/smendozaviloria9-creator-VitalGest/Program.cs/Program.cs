@@ -13,6 +13,7 @@ namespace VitalGest
 
             List<Cliente> clientes = new List<Cliente>();
             ClienteService servicio = new ClienteService();
+            ConsultasLinqService consultasLinq = new ConsultasLinqService();
 
             bool salir = false;
 
@@ -49,12 +50,21 @@ namespace VitalGest
                             break;
 
                         case "6":
+                            string idBuscar = servicio.LeerTexto("\nIngrese el ID del cliente a buscar: ");
+                            servicio.BuscarClientePorId(clientes, idBuscar);
+                            break;
+
+                        case "7":
+                            consultasLinq.EjecutarDemo(clientes);
+                            break;
+
+                        case "8":
                             salir = true;
                             Console.WriteLine("\nGracias por usar el sistema de VitalGest. Hasta pronto.");
                             break;
 
                         default:
-                            Console.WriteLine("\nOpcion invalida. Por favor selecciona una opcion del 1 al 6.");
+                            Console.WriteLine("\nOpcion invalida. Por favor selecciona una opcion del 1 al 8.");
                             break;
                     }
                 }
@@ -83,7 +93,9 @@ namespace VitalGest
             Console.WriteLine("3. Buscar cliente por nombre");
             Console.WriteLine("4. Eliminar cliente (con sus mascotas)");
             Console.WriteLine("5. Eliminar una mascota de un cliente");
-            Console.WriteLine("6. Salir");
+            Console.WriteLine("6. Buscar cliente por ID (usando Dictionary)");
+            Console.WriteLine("7. Ver consultas LINQ (demo con Where/Select/OrderBy/GroupBy)");
+            Console.WriteLine("8. Salir");
             Console.WriteLine("========================================");
             Console.Write("Seleccione una opcion: ");
         }

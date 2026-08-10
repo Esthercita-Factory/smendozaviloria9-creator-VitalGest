@@ -1,4 +1,3 @@
-
 using VitalGest.Models;
 
 namespace VitalGest.Services
@@ -158,6 +157,27 @@ namespace VitalGest.Services
             foreach (var cliente in encontrados)
             {
                 MostrarCliente(cliente);
+            }
+        }
+
+
+        public Dictionary<string, Cliente> ObtenerClientesPorId(List<Cliente> lista)
+        {
+            return lista.ToDictionary(c => c.Id, c => c);
+        }
+
+        public void BuscarClientePorId(List<Cliente> lista, string id)
+        {
+            Dictionary<string, Cliente> clientesPorId = ObtenerClientesPorId(lista);
+
+           
+            if (clientesPorId.TryGetValue(id, out Cliente cliente))
+            {
+                MostrarCliente(cliente);
+            }
+            else
+            {
+                Console.WriteLine($"\nNo existe ningun cliente con el ID '{id}'.");
             }
         }
 
