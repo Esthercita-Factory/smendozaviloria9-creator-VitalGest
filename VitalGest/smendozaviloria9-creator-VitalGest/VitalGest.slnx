@@ -1,4 +1,3 @@
 <Solution>
-  <Project Path="Models/Models.csproj" />
   <Project Path="Program.cs/Program.cs.csproj" />
 </Solution>
